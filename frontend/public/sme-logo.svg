@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" width="400" height="240">
+  <defs>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+
+  <rect width="100%" height="100%" fill="none" />
+
+  <!-- Left ribbon (blue) -->
+  <polygon points="200,24 92,192 156,192" fill="#19A7E6" filter="url(#shadow)" />
+
+  <!-- Right ribbon (green) -->
+  <polygon points="200,24 308,192 244,192" fill="#2BB673" filter="url(#shadow)" />
+
+  <!-- Bottom connector (red) -->
+  <polygon points="156,192 244,192 200,164" fill="#E03B3B" filter="url(#shadow)" />
+
+  <!-- Inner dark triangle to mimic the original background -->
+  <polygon points="200,64 140,170 260,170" fill="#1f2933" />
+
+  <!-- SME text -->
+  <text x="200" y="136" text-anchor="middle" fill="#FFFFFF" font-family="Arial, Helvetica, sans-serif" font-weight="700" font-size="46">SME</text>
+
+</svg>

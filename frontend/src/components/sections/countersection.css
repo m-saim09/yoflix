@@ -1,0 +1,158 @@
+.hero {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 70px 10px;
+  background: #ffffff;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+}
+
+/* TITLE */
+.container h1 {
+  font-size: 54px;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+  margin-bottom: 16px;
+}
+
+.container h1 span {
+  color: #87e64b;
+}
+
+/* SUB TEXT */
+.container p {
+  max-width: 720px;
+  margin: auto;
+  font-size: 16px;
+  color: #64748b;
+  line-height: 1.7;
+}
+
+/* MAIN BOX */
+.stats-box {
+  margin-top: 70px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 34px;
+  height: 300px;
+  width: 100%;
+  padding: 35px 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+/* CARD */
+.stat-card {
+  flex: 1;
+  min-width: 220px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* ICON */
+.icon {
+  width: 54px;
+  height: 54px;
+  margin: auto auto 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+
+  
+  color: #64748b;
+}
+
+/* NUMBER */
+.number {
+  font-size: 58px;
+  font-weight: 700;
+  line-height: 1;
+  color: #2563eb;
+  letter-spacing: -2px;
+}
+
+/* LABEL */
+.label {
+  margin-top: 12px;
+  font-size: 15px;
+  color: #475569;
+  line-height: 1.6;
+  max-width: 230px;
+  margin-inline: auto;
+}
+
+/* DIVIDER */
+.stat-card:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 90px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(148, 163, 184, 0.35),
+    transparent
+  );
+}
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+  .container h1 {
+    font-size: 42px;
+  }
+
+  .number {
+    font-size: 48px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 70px 16px;
+  }
+
+  .container h1 {
+    font-size: 32px;
+  }
+
+  .container p {
+    font-size: 15px;
+  }
+
+  .stats-box {
+    flex-direction: column;
+    padding: 40px 25px;
+    gap: 35px;
+  }
+
+  .stat-card:not(:last-child)::after {
+    display: none;
+  }
+
+  .number {
+    font-size: 42px;
+  }
+}
