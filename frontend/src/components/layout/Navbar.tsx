@@ -1,149 +1,325 @@
+
 "use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Menu,
+  X,
+  ArrowUpRight,
+  Activity,
+} from "lucide-react";
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "About Us", href: "/about" },
+  { name: "About", href: "/about" },
   { name: "Services", href: "/services" },
-  { name: "Projects", href: "/projects" },
-  { name: "Industries", href: "/industries" },
+  { name: "Pricing", href: "/pricing" },
   { name: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [mobileMenu, setMobileMenu] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenu, setMobileMenu] =
+    useState(false);
+  const [isScrolled, setIsScrolled] =
+    useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener(
+      "scroll",
+      handleScroll
+    );
 
     return () =>
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener(
+        "scroll",
+        handleScroll
+      );
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = mobileMenu
-      ? "hidden"
-      : "auto";
+    document.body.style.overflow =
+      mobileMenu ? "hidden" : "auto";
   }, [mobileMenu]);
 
   return (
     <>
       <motion.header
-        initial={{ y: -80, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6 }}
-        className={`fixed left-0 top-0 z-50 w-full transition-all duration-300 ${
-          isScrolled
-            ? "bg-[#071226]/95 backdrop-blur-2xl border-b border-[#D4AF37]/15 shadow-[0_15px_50px_rgba(0,0,0,0.45)]"
-            : "bg-[#071226]/85 backdrop-blur-xl border-b border-white/10"
-        }`}
+        initial={{
+          y: -100,
+          opacity: 0,
+        }}
+        animate={{
+          y: 0,
+          opacity: 1,
+        }}
+        transition={{
+          duration: 0.8,
+          ease: "easeOut",
+        }}
+        className="fixed top-4 left-0 right-0 z-50 px-4"
       >
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <div className="flex h-[88px] items-center justify-between">
-
+        <div className="mx-auto max-w-7xl">
+          <motion.div
+            whileHover={{
+              y: -2,
+            }}
+            className={`
+              flex h-[74px] items-center justify-between
+              rounded-[26px]
+              px-6 lg:px-8
+              border border-black/5
+              backdrop-blur-xl
+              transition-all duration-300
+              ${
+                isScrolled
+                  ? "bg-white shadow-[0_20px_60px_rgba(0,0,0,0.12)]"
+                  : "bg-white/95 shadow-[0_10px_40px_rgba(0,0,0,0.08)]"
+              }
+            `}
+          >
             {/* Logo */}
-            <Link
-              href="/"
-              className="flex items-center gap-4"
+            <motion.div
+              whileHover={{
+                scale: 1.03,
+              }}
+              transition={{
+                type: "spring",
+                stiffness: 400,
+                damping: 12,
+              }}
             >
-              <Image
-                src="/sme-logo.png"
-                alt="SME Engineering Services"
-                width={72}
-                height={72}
-                priority
-                className="object-contain"
-              />
+              <Link
+                href="/"
+                className="flex items-center gap-3"
+              >
+                <div
+                  className="
+                    flex h-10 w-10
+                    items-center justify-center
+                    rounded-xl
+                    border border-gray-200
+                    bg-white
+                    shadow-sm
+                  "
+                >
+                  <Activity
+                    size={18}
+                    className="text-black"
+                  />
+                </div>
 
-              <div>
-                <h2 className="text-[15px] font-extrabold uppercase tracking-[0.08em] text-white">
-                  Shahid & Maqbool
+                <h2
+                  className="
+                    text-lg
+                    font-semibold
+                    text-black
+                  "
+                >
+                  Yoflix
                 </h2>
-
-                <p className="text-[10px] uppercase tracking-[0.35em] text-white/70">
-                  Engineering Services
-                </p>
-              </div>
-            </Link>
+              </Link>
+            </motion.div>
 
             {/* Desktop Menu */}
             <nav className="hidden lg:flex items-center gap-10">
-              {navLinks.map((link) => {
-                const active =
-                  pathname === link.href ||
-                  (link.href !== "/" &&
-                    pathname.startsWith(link.href));
+              {navLinks.map(
+                (link, idx) => {
+                  const active =
+                    pathname ===
+                      link.href ||
+                    (link.href !== "/" &&
+                      pathname.startsWith(
+                        link.href
+                      ));
 
-                return (
-                  <Link
-                    key={link.name}
-                    href={link.href}
-                    className="group relative"
-                  >
-                    <span
-                      className={`text-[15px] font-medium transition duration-300 ${
-                        active
-                          ? "text-white"
-                          : "text-white/75 hover:text-white"
-                      }`}
+                  return (
+                    <motion.div
+                      key={link.name}
+                      initial={{
+                        opacity: 0,
+                        y: -20,
+                      }}
+                      animate={{
+                        opacity: 1,
+                        y: 0,
+                      }}
+                      transition={{
+                        duration: 0.5,
+                        delay:
+                          idx * 0.08,
+                      }}
                     >
-                      {link.name}
-                    </span>
+                      <Link
+                        href={link.href}
+                        className="group relative"
+                      >
+                        <motion.span
+                          whileHover={{
+                            y: -2,
+                          }}
+                          className={`
+                            text-sm
+                            font-medium
+                            transition-colors
+                            duration-300
+                            ${
+                              active
+                                ? "text-black"
+                                : "text-gray-500 group-hover:text-black"
+                            }
+                          `}
+                        >
+                          {link.name}
+                        </motion.span>
 
-                    <span
-                      className={`absolute -bottom-[18px] left-0 rounded-full bg-[#D4AF37] shadow-[0_0_12px_rgba(212,175,55,0.6)] transition-all duration-300 ${
-                        active
-                          ? "h-[4px] w-full"
-                          : "h-[4px] w-0 group-hover:w-full"
-                      }`}
-                    />
-                  </Link>
-                );
-              })}
+                        <motion.div
+                          className="
+                            absolute
+                            -bottom-2
+                            left-0
+                            h-[2px]
+                            bg-black
+                            rounded-full
+                          "
+                          initial={{
+                            width:
+                              active
+                                ? "100%"
+                                : "0%",
+                          }}
+                          whileHover={{
+                            width:
+                              "100%",
+                          }}
+                          transition={{
+                            duration:
+                              0.3,
+                          }}
+                        />
+                      </Link>
+                    </motion.div>
+                  );
+                }
+              )}
             </nav>
 
             {/* Right Side */}
-            <div className="hidden lg:flex items-center gap-5">
-
-              <div className="flex items-center gap-2 text-white/80">
-                <Phone size={16} />
-                <span className="text-sm">
-                  +92 300 1234567
-                </span>
-              </div>
-
+            <motion.div
+              className="hidden lg:flex items-center gap-6"
+              initial={{
+                opacity: 0,
+                x: 20,
+              }}
+              animate={{
+                opacity: 1,
+                x: 0,
+              }}
+              transition={{
+                duration: 0.6,
+                delay: 0.2,
+              }}
+            >
               <Link
-                href="/contact"
-                className="group inline-flex items-center gap-2 rounded-full bg-[#D4AF37] px-7 py-3 text-sm font-semibold text-[#071226] shadow-[0_10px_30px_rgba(212,175,55,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#E5C76F]"
+                href="/signin"
+                className="
+                  text-sm
+                  font-medium
+                  text-gray-500
+                  hover:text-black
+                  transition-colors
+                "
               >
-                Get Free Consultation
-
-                <ArrowUpRight
-                  size={16}
-                  className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-                />
+                Sign in
               </Link>
-            </div>
+
+              <motion.div
+                whileHover={{
+                  scale: 1.05,
+                  y: -2,
+                }}
+                whileTap={{
+                  scale: 0.95,
+                }}
+                transition={{
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 10,
+                }}
+              >
+                <Link
+                  href="/contact"
+                  className="
+                    group
+                    inline-flex
+                    items-center
+                    gap-2
+                    rounded-xl
+                    bg-black
+                    px-6
+                    py-3
+                    text-sm
+                    font-semibold
+                    text-white
+                    shadow-lg
+                    hover:shadow-2xl
+                    transition-all
+                    duration-300
+                  "
+                >
+                  <span>
+                    Get Started
+                  </span>
+
+                  <motion.div
+                    whileHover={{
+                      rotate: 45,
+                      x: 2,
+                      y: -2,
+                    }}
+                  >
+                    <ArrowUpRight
+                      size={16}
+                      className="text-white"
+                    />
+                  </motion.div>
+                </Link>
+              </motion.div>
+            </motion.div>
 
             {/* Mobile Toggle */}
-            <button
+            <motion.button
               onClick={() =>
-                setMobileMenu(!mobileMenu)
+                setMobileMenu(
+                  !mobileMenu
+                )
               }
-              className="text-white lg:hidden"
+              className="
+                lg:hidden
+                p-2
+                text-black
+              "
+              whileHover={{
+                scale: 1.1,
+              }}
+              whileTap={{
+                scale: 0.95,
+              }}
             >
               {mobileMenu ? (
-                <X size={30} />
+                <X size={24} />
               ) : (
-                <Menu size={30} />
+                <Menu size={24} />
               )}
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
         </div>
       </motion.header>
 
@@ -152,88 +328,188 @@ export default function Navbar() {
         {mobileMenu && (
           <>
             <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setMobileMenu(false)}
-              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm"
+              initial={{
+                opacity: 0,
+              }}
+              animate={{
+                opacity: 1,
+              }}
+              exit={{
+                opacity: 0,
+              }}
+              onClick={() =>
+                setMobileMenu(false)
+              }
+              className="
+                fixed inset-0 z-40
+                bg-black/40
+                backdrop-blur-sm
+              "
             />
 
             <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
+              initial={{
+                x: "100%",
+              }}
+              animate={{
+                x: 0,
+              }}
+              exit={{
+                x: "100%",
+              }}
               transition={{
                 type: "spring",
                 damping: 25,
                 stiffness: 220,
               }}
-              className="fixed right-0 top-0 z-50 h-full w-[320px] bg-[#071226] border-l border-[#D4AF37]/20 p-8"
+              className="
+                fixed
+                right-0
+                top-0
+                z-50
+                h-full
+                w-[300px]
+                bg-white
+                border-l
+                border-black/10
+                p-8
+                overflow-y-auto
+              "
             >
               <div className="mb-12 flex items-center justify-between">
-                <h3 className="text-lg font-bold text-white">
+                <h3
+                  className="
+                    text-lg
+                    font-semibold
+                    text-black
+                  "
+                >
                   Menu
                 </h3>
 
-                <button
+                <motion.button
                   onClick={() =>
-                    setMobileMenu(false)
+                    setMobileMenu(
+                      false
+                    )
                   }
+                  whileHover={{
+                    rotate: 90,
+                  }}
+                  className="
+                    text-black
+                  "
                 >
-                  <X
-                    size={28}
-                    className="text-white"
-                  />
-                </button>
+                  <X size={24} />
+                </motion.button>
               </div>
 
-              <div className="flex flex-col gap-7">
-                {navLinks.map((link) => {
-                  const active =
-                    pathname === link.href ||
-                    (link.href !== "/" &&
-                      pathname.startsWith(
-                        link.href
-                      ));
+              <div className="flex flex-col gap-5">
+                {navLinks.map(
+                  (
+                    link,
+                    idx
+                  ) => {
+                    const active =
+                      pathname ===
+                        link.href ||
+                      (link.href !==
+                        "/" &&
+                        pathname.startsWith(
+                          link.href
+                        ));
 
-                  return (
-                    <Link
-                      key={link.name}
-                      href={link.href}
-                      onClick={() =>
-                        setMobileMenu(false)
-                      }
-                      className={`text-xl font-semibold ${
-                        active
-                          ? "text-[#D4AF37]"
-                          : "text-white"
-                      }`}
-                    >
-                      {link.name}
-                    </Link>
-                  );
-                })}
+                    return (
+                      <motion.div
+                        key={
+                          link.name
+                        }
+                        initial={{
+                          opacity: 0,
+                          x: 20,
+                        }}
+                        animate={{
+                          opacity: 1,
+                          x: 0,
+                        }}
+                        transition={{
+                          delay:
+                            idx *
+                            0.05,
+                        }}
+                        whileHover={{
+                          x: 8,
+                        }}
+                      >
+                        <Link
+                          href={
+                            link.href
+                          }
+                          onClick={() =>
+                            setMobileMenu(
+                              false
+                            )
+                          }
+                          className={`
+                            block
+                            text-lg
+                            font-medium
+                            transition-colors
+                            ${
+                              active
+                                ? "text-black"
+                                : "text-gray-500 hover:text-black"
+                            }
+                          `}
+                        >
+                          {
+                            link.name
+                          }
+                        </Link>
+                      </motion.div>
+                    );
+                  }
+                )}
               </div>
 
-              <div className="mt-12 border-t border-white/10 pt-8">
-                <p className="mb-4 text-white/60">
-                  Call Us
-                </p>
-
-                <p className="text-white">
-                  +92 300 1234567
-                </p>
-
+              <motion.div
+                className="
+                  mt-12
+                  border-t
+                  border-black/10
+                  pt-8
+                "
+                initial={{
+                  opacity: 0,
+                  y: 20,
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                }}
+              >
                 <Link
                   href="/contact"
                   onClick={() =>
-                    setMobileMenu(false)
+                    setMobileMenu(
+                      false
+                    )
                   }
-                  className="mt-8 inline-flex w-full justify-center rounded-full bg-[#D4AF37] px-6 py-4 font-semibold text-[#071226]"
+                  className="
+                    block
+                    w-full
+                    rounded-xl
+                    bg-black
+                    px-6
+                    py-4
+                    text-center
+                    font-semibold
+                    text-white
+                  "
                 >
-                  Get Consultation
+                  Get Started
                 </Link>
-              </div>
+              </motion.div>
             </motion.div>
           </>
         )}
@@ -241,3 +517,4 @@ export default function Navbar() {
     </>
   );
 }
+

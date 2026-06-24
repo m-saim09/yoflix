@@ -2,19 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import {
-  Mail,
-  Phone,
-  MapPin,
-  ArrowUpRight,
-  Linkedin,
-  Facebook,
-  Instagram,
-  ShieldCheck,
-  Building2,
-  Wrench,
-  HardHat,
-} from "lucide-react";
+import { Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
 
 import { NAVIGATION_LINKS, SITE_NAME } from "@/lib/constants";
 import { useWebsiteSettings } from "@/hooks/useWebsiteContent";
@@ -59,22 +47,22 @@ export default function Footer() {
             {/* TRUST BADGES */}
             <div className="mt-8 grid grid-cols-2 gap-4 text-sm">
               <div className="flex items-center gap-2 text-neutral-700">
-                <Building2 size={18} className="text-[#D4AF37]" />
+                <span className="text-[#D4AF37]">🏗️</span>
                 Industrial Projects
               </div>
 
               <div className="flex items-center gap-2 text-neutral-700">
-                <Wrench size={18} className="text-[#D4AF37]" />
+                <span className="text-[#D4AF37]">🔧</span>
                 EPC Solutions
               </div>
 
               <div className="flex items-center gap-2 text-neutral-700">
-                <HardHat size={18} className="text-[#D4AF37]" />
+                <span className="text-[#D4AF37]">👷‍♂️</span>
                 Expert Engineers
               </div>
 
               <div className="flex items-center gap-2 text-neutral-700">
-                <ShieldCheck size={18} className="text-[#D4AF37]" />
+                <span className="text-[#D4AF37]">✅</span>
                 Quality Assured
               </div>
             </div>
@@ -97,21 +85,21 @@ export default function Footer() {
                 href="#"
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-[#D4AF37]/30 text-[#08101D] transition hover:bg-[#D4AF37] hover:text-white"
               >
-                <Linkedin size={18} />
+                <span className="text-lg">in</span>
               </a>
 
               <a
                 href="#"
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-[#D4AF37]/30 text-[#08101D] transition hover:bg-[#D4AF37] hover:text-white"
               >
-                <Facebook size={18} />
+                <span className="text-lg">f</span>
               </a>
 
               <a
                 href="#"
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-[#D4AF37]/30 text-[#08101D] transition hover:bg-[#D4AF37] hover:text-white"
               >
-                <Instagram size={18} />
+                <span className="text-lg">📸</span>
               </a>
             </div>
           </div>

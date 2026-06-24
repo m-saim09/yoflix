@@ -5,189 +5,134 @@ import { motion } from "framer-motion";
 import { ArrowRight, ChevronDown } from "lucide-react";
 
 export default function HeroSection() {
-  const slides = [
-    new URL("./images/project-1.jpg", import.meta.url).href,
-    new URL("./images/project-2.jpg", import.meta.url).href,
-    new URL("./images/project-3.jpg", import.meta.url).href,
-  ];
-
   return (
-    <section className="relative isolate min-h-screen overflow-hidden">
-      {/* Background Slider */}
-      <div className="absolute inset-0">
-        {slides.map((image, index) => (
-          <img
-            key={index}
-            src={image}
-            alt="Industrial Project"
-            className={`slide slide-${index + 1} absolute inset-0 h-full w-full object-cover`}
-          />
-        ))}
+    <section className="hero relative min-h-screen overflow-hidden text-slate-950">
+      <div className="content">
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          <div className="inline-flex items-center gap-3 rounded-full border border-slate-200/70 bg-slate-50/80 px-5 py-3 text-sm uppercase tracking-[0.22em] text-slate-900 shadow-[0_20px_80px_rgba(0,0,0,0.08)] backdrop-blur-xl">
+            <span className="rounded-full bg-[#4973ff]/15 px-3 py-1 text-[#1c3dcc]">Yoflix</span>
+            <span>Digital products, websites & CRM systems</span>
+          </div>
+
+          <h2>
+            Design, build, and launch
+            <span className="block text-[#4973ff]">modern business experiences</span>
+          </h2>
+
+          <p>
+            Grow your brand with premium websites, smart lead capture, and CRM workflows crafted for ambitious businesses.
+          </p>
+
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center gap-3 rounded-full bg-[#4973ff] px-8 py-4 text-sm font-semibold text-white transition duration-300 hover:bg-[#3a5ce8]"
+            >
+              Start your project
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/services"
+              className="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-8 py-4 text-sm font-semibold text-white transition duration-300 hover:bg-white/15"
+            >
+              View services
+            </Link>
+          </div>
+        </motion.div>
       </div>
 
-      {/* Premium Overlays */}
-      <div className="absolute inset-0 bg-slate-950/45" />
-      <div className="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-950/30 to-slate-950/80" />
-      <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/10 to-transparent" />
-      <div className="absolute inset-0 backdrop-[blur(2px)]" />
+      <div className="waves" />
 
-      {/* Ambient Glow */}
-      <div className="absolute left-1/2 top-20 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-amber-400/10 blur-[140px]" />
-
-      {/* Content */}
-      <div className="relative z-20 flex min-h-screen items-center justify-center">
-        <div className="mx-auto w-full max-w-7xl px-6 sm:px-8 lg:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 35 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9 }}
-            className="mx-auto max-w-5xl text-center"
-          >
-            {/* Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 15 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.15 }}
-              className="flex justify-center"
-            >
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-5 py-2.5 backdrop-blur-xl">
-                <span className="h-2 w-2 rounded-full bg-amber-400 shadow-[0_0_12px_#fbbf24]" />
-                <span className="text-[11px] font-medium uppercase tracking-[0.24em] text-slate-200">
-                  Trusted Industrial Engineering Partner
-                </span>
-              </div>
-            </motion.div>
-
-            {/* Heading */}
-           <motion.h1
-  initial={{ opacity: 0, y: 25 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ delay: 0.25 }}
-  className="mt-8 text-5xl font-bold leading-[0.95] tracking-[-0.05em] text-white sm:text-6xl lg:text-7xl xl:text-[5.5rem]"
->
-  Building Industrial
-  <span className="mt-4 block bg-gradient-to-r from-amber-300 via-amber-400 to-yellow-200 bg-clip-text text-transparent">
-    Infrastructure That Lasts
-  </span>
-</motion.h1>
-
-            {/* Description */}
-            <motion.p
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.35 }}
-              className="mx-auto mt-8 max-w-3xl text-base leading-relaxed text-slate-300 sm:text-lg lg:text-xl"
-            >
-              Delivering world-class fabrication, construction, maintenance,
-              and engineering solutions that empower industrial growth,
-              operational efficiency, and long-term success.
-            </motion.p>
-
-            {/* CTA Buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.45 }}
-              className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row"
-            >
-              <Link
-                href="/projects"
-                className="group inline-flex items-center justify-center gap-3 rounded-full bg-amber-400 px-8 py-4 text-sm font-semibold text-slate-950 transition-all duration-300 hover:-translate-y-1 hover:bg-amber-300 hover:shadow-[0_15px_45px_rgba(251,191,36,0.35)]"
-              >
-                Explore Projects
-                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </Link>
-
-              <Link
-                href="/contact"
-                className="group inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-8 py-4 text-sm font-semibold text-white backdrop-blur-xl transition-all duration-300 hover:-translate-y-1 hover:border-white/25 hover:bg-white/10"
-              >
-                Get Consultation
-              </Link>
-            </motion.div>
-
-            {/* Trust Indicators */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-              className="mt-20 flex flex-wrap items-center justify-center gap-x-12 gap-y-8 border-t border-white/10 pt-10"
-            >
-              <div>
-                <h3 className="text-3xl font-bold text-white">15+</h3>
-                <p className="mt-2 text-sm text-slate-400">
-                  Years Experience
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-3xl font-bold text-white">300+</h3>
-                <p className="mt-2 text-sm text-slate-400">
-                  Projects Delivered
-                </p>
-              </div>
-
-              <div>
-                <h3 className="text-3xl font-bold text-white">50+</h3>
-                <p className="mt-2 text-sm text-slate-400">
-                  Industrial Clients
-                </p>
-              </div>
-            </motion.div>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2">
-        <div className="flex flex-col items-center gap-2 text-white/60">
-          <span className="text-[10px] uppercase tracking-[0.3em]">
-            Scroll
-          </span>
+      <div className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2">
+        <div className="flex flex-col items-center gap-2 text-white/70">
+          <span className="text-[10px] uppercase tracking-[0.3em]">Scroll</span>
           <ChevronDown className="h-6 w-6 animate-bounce" />
         </div>
       </div>
 
       <style jsx>{`
-        .slide {
-          opacity: 0;
-          animation: heroSlider 18s infinite;
+        .hero {
+          --hero-wave: #4973ff;
+          position: relative;
+          background: #ffffff;
+          color: #0f172a;
+          min-height: 100vh;
         }
 
-        .slide-1 {
-          animation-delay: 0s;
+        .content {
+          max-width: 600px;
+          margin: 0 auto;
+          padding: 140px 20px 120px;
+          position: relative;
+          z-index: 1;
         }
 
-        .slide-2 {
-          animation-delay: 6s;
+        .hero h2 {
+          position: relative;
+          z-index: 1;
+          font-size: clamp(3rem, 6vw, 4.5rem);
+          margin: 1.5rem 0 0.75rem;
+          line-height: 1.05;
+          color: #0f172a;
         }
 
-        .slide-3 {
-          animation-delay: 12s;
+        .hero h2 span {
+          color: #8cb7ff;
         }
 
-        @keyframes heroSlider {
+        .hero p {
+          position: relative;
+          z-index: 1;
+          font-size: 1.05rem;
+          color: rgba(15, 23, 42, 0.72);
+          line-height: 1.7;
+          max-width: 34rem;
+        }
+
+        .waves {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          height: 200px;
+          background-color: var(--hero-wave);
+          box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);
+          transition: 500ms;
+        }
+
+        .waves::before,
+        .waves::after {
+          content: "";
+          position: absolute;
+          width: 300vw;
+          height: 300vw;
+          top: -65vw;
+          left: 50%;
+          transform: translate(-50%, -75%);
+        }
+
+        .waves::before {
+          border-radius: 44%;
+          background: rgba(51, 51, 51, 1);
+          animation: waves 8s linear infinite;
+        }
+
+        .waves::after {
+          border-radius: 44%;
+          background: rgba(51, 51, 51, 0.5);
+          animation: waves 15s linear infinite;
+        }
+
+        @keyframes waves {
           0% {
-            opacity: 0;
-            transform: scale(1);
+            transform: translate(-50%, -75%) rotate(0deg);
           }
-
-          8% {
-            opacity: 1;
-          }
-
-          30% {
-            opacity: 1;
-            transform: scale(1.05);
-          }
-
-          38% {
-            opacity: 0;
-            transform: scale(1.1);
-          }
-
           100% {
-            opacity: 0;
+            transform: translate(-50%, -75%) rotate(360deg);
           }
         }
       `}</style>
